@@ -1,0 +1,25 @@
+.gradle
+/local.properties
+.DS_Store
+/build
+gradle.properties
+
+# User-specific configurations
+.idea/
+*.iml
+
+# OSX files
+.DS_Store
+.DS_Store?
+
+# Windows thumbnail db
+ehthumbs.db
+Thumbs.db
+
+# OS-specific files
+._*
+.Spotlight-V100
+.Trashes
+
+# Log Files
+*.log
