@@ -17,7 +17,5 @@ android {
 }
 
 dependencies {
-    compile 'com.mcxiaoke.volley:library:1.0.10'
-    compile 'com.squareup.okhttp:okhttp:2.1.0'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.1.0'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
