@@ -21,6 +21,6 @@ then
 
 ```
 dependencies {
-    compile 'info.feelyou.volleyplus:library:0.1.1'
+    compile 'info.feelyou.volleyplus:library:0.1.2'
 }
 ```
