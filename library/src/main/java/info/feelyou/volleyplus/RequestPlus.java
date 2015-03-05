@@ -1,5 +1,7 @@
 package info.feelyou.volleyplus;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -180,6 +182,10 @@ public abstract class RequestPlus<T> extends Request<T> {
         return convertRequestBodyToByte(body);
     }
 
+    public FinishListener getFinishListener() {
+        return finishListener;
+    }
+
     /**
      * Convert {@link com.squareup.okhttp.RequestBody} to byte[]
      *
@@ -205,21 +211,40 @@ public abstract class RequestPlus<T> extends Request<T> {
 
     @Override
     protected void deliverResponse(T response) {
-        VolleyLog.v("\n" + buildHeadersString() + "\n" + buildBodyString());
         onResponse(response);
         if (finishListener != null) {
             finishListener.onFinish();
         }
+        printRequestDetail(false);
     }
 
     abstract protected void onResponse(T response);
 
     @Override
     public void deliverError(VolleyError error) {
-        VolleyLog.e("\n" + buildHeadersString() + "\n" + buildBodyString());
         super.deliverError(error);
         if (finishListener != null) {
             finishListener.onFinish();
+        }
+        printRequestDetail(true);
+    }
+
+    public void printRequestDetail(boolean isError) {
+        String logStr = "\n" + buildHeadersString() + "\n" + buildBodyString();
+        try {
+            if (isError) {
+                VolleyLog.e(logStr);
+            } else {
+                VolleyLog.v(logStr);
+            }
+        } catch (Exception e) {
+            if (VolleyLog.DEBUG) {
+                if (isError) {
+                    Log.e(VolleyLog.TAG, logStr);
+                } else {
+                    Log.v(VolleyLog.TAG, logStr);
+                }
+            }
         }
     }
 
