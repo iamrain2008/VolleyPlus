@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 21
@@ -16,6 +17,19 @@ android {
     }
 }
 
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "file:${rootDir}/release") {
+            pom.groupId = "info.feelyou.volleyplus"
+            pom.artifactId = "library"
+            pom.version = '0.1.3'
+            pom.packaging = 'aar'
+        }
+    }
+}
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.squareup.okhttp:okhttp:2.3.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'
+    compile 'com.mcxiaoke.volley:library:1.0.15'
 }
