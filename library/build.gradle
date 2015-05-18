@@ -22,7 +22,7 @@ uploadArchives {
         repository(url: "file:${rootDir}/release") {
             pom.groupId = "info.feelyou.volleyplus"
             pom.artifactId = "library"
-            pom.version = '0.1.3'
+            pom.version = '0.1.4'
             pom.packaging = 'aar'
         }
     }
