@@ -86,20 +86,6 @@ public abstract class RequestPlus<T> extends Request<T> {
             if (contentType != null) {
                 map.put("Content-Type", contentType.toString());
             }
-
-            long contentLength = 0;
-            try {
-                contentLength = body.contentLength();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (contentLength != -1) {
-                map.put("Content-Length", Long.toString(contentLength));
-                map.remove("Transfer-Encoding");
-            } else {
-                map.put("Transfer-Encoding", "chunked");
-                map.remove("Content-Length");
-            }
         }
 
         return map;
